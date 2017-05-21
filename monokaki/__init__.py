@@ -57,7 +57,7 @@ class StructuralFormatter:
         if record.stack_info:
             d["stack"] = self.formatter.formatStack(record.stack_info)
         d.update(record.kwargs)
-        return self.renderer(record, d)
+        return self.renderer(d, record, self.formatter)
 
 
 def get_logger(name):
