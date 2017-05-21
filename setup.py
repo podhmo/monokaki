@@ -29,14 +29,14 @@ testing_extras = tests_require + [
 ]
 
 setup(name='monokaki',
-      version='0.1.0',
+      version='0.1.1',
       description='contextual logging library, no patch, no logging module replacement',
       long_description=README + '\n\n' + CHANGES,
       classifiers=[
           "Programming Language :: Python",
           "Programming Language :: Python :: Implementation :: CPython",
       ],
-      keywords='',
+      keywords='logging structured-logging contextual-logging',
       author="podhmo",
       author_email="",
       url="https://github.com/podhmo/monokaki",
