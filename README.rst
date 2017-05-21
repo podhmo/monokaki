@@ -57,14 +57,14 @@ main.py
 .. code-block:: bash
 
   $ python examples/readme/main.py
-  {"level": "INFO", "msg": "hello", "name": "foo"}
-  {"level": "INFO", "msg": "bye"}
+  {"level": "INFO", "logger": "__main__", "msg": "hello", "name": "foo", "time": "2017-05-21 16:03:44,306"}
+  {"level": "INFO", "logger": "__main__", "msg": "bye", "time": "2017-05-21 16:03:44,307"}
   INFO:stdlib's:hai
   
   $ python examples/readme/main.py --logging=DEBUG
-  {"level": "INFO", "msg": "hello", "name": "foo"}
-  {"level": "DEBUG", "msg": "hmm..", "name": "foo"}
-  {"level": "INFO", "msg": "bye"}
+  {"level": "INFO", "logger": "__main__", "msg": "hello", "name": "foo", "time": "2017-05-21 16:03:44,427"}
+  {"level": "DEBUG", "logger": "__main__", "msg": "hmm..", "name": "foo", "time": "2017-05-21 16:03:44,427"}
+  {"level": "INFO", "logger": "__main__", "msg": "bye", "time": "2017-05-21 16:03:44,428"}
   INFO:stdlib's:hai
   
 
@@ -123,7 +123,7 @@ main.py
 
   $ python examples/customize-renderer/main.py
   {
-    "time": "2017-05-21 15:59:46,126",
+    "time": "2017-05-21 16:03:44,645",
     "level": "INFO",
     "meg": "hello",
     "caller": "examples/customize-renderer/main.py:6",
@@ -132,7 +132,7 @@ main.py
     "age": 20
   }
   {
-    "time": "2017-05-21 15:59:46,127",
+    "time": "2017-05-21 16:03:44,646",
     "level": "INFO",
     "meg": "bye",
     "caller": "examples/customize-renderer/main.py:7",

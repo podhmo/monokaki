@@ -6,6 +6,8 @@ class JSONRenderer:
         self.kwargs = kwargs
 
     def __call__(self, d, record, formatter):
+        d["logger"] = record.name
+        d["time"] = formatter.formatTime(record)
         return json.dumps(d, **self.kwargs)
 
 
