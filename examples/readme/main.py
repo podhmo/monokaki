@@ -3,11 +3,20 @@ from monokaki import basic_config, get_logger
 logger = get_logger(__name__)
 
 
-def main():
-    log = logger.bind(name="foo")
+def run(log):
     log.info("hello")
     log.debug("hmm..")
-    log.info("bye")
+
+
+def main():
+    log = logger.bind(name="foo")
+    run(log)
+    logger.info("bye")
+
+    # normal stdlib's logger
+    import logging
+    normallogger = logging.getLogger("stdlib's")
+    normallogger.info("hai")
 
 
 if __name__ == "__main__":

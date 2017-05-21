@@ -27,11 +27,20 @@ main.py
   logger = get_logger(__name__)
   
   
-  def main():
-      log = logger.bind(name="foo")
+  def run(log):
       log.info("hello")
       log.debug("hmm..")
-      log.info("bye")
+  
+  
+  def main():
+      log = logger.bind(name="foo")
+      run(log)
+      logger.info("bye")
+  
+      # normal stdlib's logger
+      import logging
+      normallogger = logging.getLogger("stdlib's")
+      normallogger.info("hai")
   
   
   if __name__ == "__main__":
@@ -50,12 +59,14 @@ main.py
 
   $ python examples/readme/main.py
   {"level": "INFO", "msg": "hello", "name": "foo"}
-  {"level": "INFO", "msg": "bye", "name": "foo"}
+  {"level": "INFO", "msg": "bye"}
+  INFO:stdlib's:hai
   
   $ python examples/readme/main.py --logging=DEBUG
   {"level": "INFO", "msg": "hello", "name": "foo"}
   {"level": "DEBUG", "msg": "hmm..", "name": "foo"}
-  {"level": "INFO", "msg": "bye", "name": "foo"}
+  {"level": "INFO", "msg": "bye"}
+  INFO:stdlib's:hai
   
 
 
@@ -106,7 +117,7 @@ main.py
 
   $ python examples/customize-renderer/main.py
   {
-    "time": "2017-05-21 15:48:49,121",
+    "time": "2017-05-21 15:55:33,214",
     "level": "INFO",
     "meg": "hello",
     "caller": "examples/customize-renderer/main.py:6",
@@ -115,7 +126,7 @@ main.py
     "name": "foo"
   }
   {
-    "time": "2017-05-21 15:48:49,121",
+    "time": "2017-05-21 15:55:33,214",
     "level": "INFO",
     "meg": "bye",
     "caller": "examples/customize-renderer/main.py:7",
