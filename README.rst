@@ -23,6 +23,7 @@ main.py
 .. code-block:: python
 
   from monokaki import basic_config, get_logger
+  import logging
   
   logger = get_logger(__name__)
   
@@ -38,13 +39,11 @@ main.py
       logger.info("bye")
   
       # normal stdlib's logger
-      import logging
       normallogger = logging.getLogger("stdlib's")
       normallogger.info("hai")
   
   
   if __name__ == "__main__":
-      import logging
       import argparse
       parser = argparse.ArgumentParser()
       parser.add_argument(
@@ -117,22 +116,22 @@ main.py
 
   $ python examples/customize-renderer/main.py
   {
-    "time": "2017-05-21 15:55:33,214",
+    "time": "2017-05-21 15:56:23,366",
     "level": "INFO",
     "meg": "hello",
     "caller": "examples/customize-renderer/main.py:6",
     "source": "__main__",
-    "age": 20,
-    "name": "foo"
+    "name": "foo",
+    "age": 20
   }
   {
-    "time": "2017-05-21 15:55:33,214",
+    "time": "2017-05-21 15:56:23,366",
     "level": "INFO",
     "meg": "bye",
     "caller": "examples/customize-renderer/main.py:7",
     "source": "__main__",
-    "age": 21,
-    "name": "foo"
+    "name": "foo",
+    "age": 21
   }
   
 

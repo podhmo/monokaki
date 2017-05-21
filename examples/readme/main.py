@@ -1,4 +1,5 @@
 from monokaki import basic_config, get_logger
+import logging
 
 logger = get_logger(__name__)
 
@@ -14,13 +15,11 @@ def main():
     logger.info("bye")
 
     # normal stdlib's logger
-    import logging
     normallogger = logging.getLogger("stdlib's")
     normallogger.info("hai")
 
 
 if __name__ == "__main__":
-    import logging
     import argparse
     parser = argparse.ArgumentParser()
     parser.add_argument(
