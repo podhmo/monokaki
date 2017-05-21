@@ -1,5 +1,3 @@
-import time
-import json
 import sys
 import logging
 import threading
