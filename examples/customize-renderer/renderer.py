@@ -11,4 +11,5 @@ def ordered_json_render(data, record, formatter):
     kwargs["source"] = record.name
     if "stack" in data:
         kwargs["stack"] = data["stack"]
+    kwargs.update(record.kwargs)
     return json.dumps(kwargs, indent=2)

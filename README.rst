@@ -8,6 +8,13 @@ nejimaki
 contextual logging library, no patch, no logging module replacement
 
 
+features
+----------------------------------------
+
+- structured logging
+- contextual logging (via `logger.bind`)
+- (no conflicts (stdlib's logging module))
+
 example
 ----------------------------------------
 
@@ -72,6 +79,7 @@ renderer.py
       kwargs["source"] = record.name
       if "stack" in data:
           kwargs["stack"] = data["stack"]
+      kwargs.update(record.kwargs)
       return json.dumps(kwargs, indent=2)
 
 main.py
@@ -98,18 +106,22 @@ main.py
 
   $ python examples/customize-renderer/main.py
   {
-    "time": "2017-05-21 15:44:30,840",
+    "time": "2017-05-21 15:48:49,121",
     "level": "INFO",
     "meg": "hello",
     "caller": "examples/customize-renderer/main.py:6",
-    "source": "__main__"
+    "source": "__main__",
+    "age": 20,
+    "name": "foo"
   }
   {
-    "time": "2017-05-21 15:44:30,840",
+    "time": "2017-05-21 15:48:49,121",
     "level": "INFO",
     "meg": "bye",
     "caller": "examples/customize-renderer/main.py:7",
-    "source": "__main__"
+    "source": "__main__",
+    "age": 21,
+    "name": "foo"
   }
   
 
