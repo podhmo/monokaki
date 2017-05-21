@@ -57,14 +57,14 @@ main.py
 .. code-block:: bash
 
   $ python examples/readme/main.py
-  {"level": "INFO", "logger": "__main__", "msg": "hello", "name": "foo", "time": "2017-05-21 16:03:44,306"}
-  {"level": "INFO", "logger": "__main__", "msg": "bye", "time": "2017-05-21 16:03:44,307"}
+  {"level": "INFO", "logger": "__main__", "msg": "hello", "name": "foo", "time": "2017-05-21 16:12:01,992"}
+  {"level": "INFO", "logger": "__main__", "msg": "bye", "time": "2017-05-21 16:12:01,993"}
   INFO:stdlib's:hai
   
   $ python examples/readme/main.py --logging=DEBUG
-  {"level": "INFO", "logger": "__main__", "msg": "hello", "name": "foo", "time": "2017-05-21 16:03:44,427"}
-  {"level": "DEBUG", "logger": "__main__", "msg": "hmm..", "name": "foo", "time": "2017-05-21 16:03:44,427"}
-  {"level": "INFO", "logger": "__main__", "msg": "bye", "time": "2017-05-21 16:03:44,428"}
+  {"level": "INFO", "logger": "__main__", "msg": "hello", "name": "foo", "time": "2017-05-21 16:12:02,101"}
+  {"level": "DEBUG", "logger": "__main__", "msg": "hmm..", "name": "foo", "time": "2017-05-21 16:12:02,101"}
+  {"level": "INFO", "logger": "__main__", "msg": "bye", "time": "2017-05-21 16:12:02,102"}
   INFO:stdlib's:hai
   
 
@@ -110,6 +110,10 @@ main.py
   def main():
       logger.bind(name="foo").info("hello", age=20)
       logger.bind(name="foo").info("bye", age=21)
+      try:
+          1 / 0
+      except:
+          logger.info("1/0", exc_info=True)
   
   
   if __name__ == "__main__":
@@ -123,22 +127,30 @@ main.py
 
   $ python examples/customize-renderer/main.py
   {
-    "time": "2017-05-21 16:03:44,645",
+    "time": "2017-05-21 16:12:02,303",
     "level": "INFO",
     "meg": "hello",
     "caller": "examples/customize-renderer/main.py:6",
     "source": "__main__",
-    "name": "foo",
-    "age": 20
+    "age": 20,
+    "name": "foo"
   }
   {
-    "time": "2017-05-21 16:03:44,646",
+    "time": "2017-05-21 16:12:02,303",
     "level": "INFO",
     "meg": "bye",
     "caller": "examples/customize-renderer/main.py:7",
     "source": "__main__",
-    "name": "foo",
-    "age": 21
+    "age": 21,
+    "name": "foo"
+  }
+  {
+    "time": "2017-05-21 16:12:02,304",
+    "level": "INFO",
+    "meg": "1/0",
+    "caller": "examples/customize-renderer/main.py:11",
+    "source": "__main__",
+    "stack": "Traceback (most recent call last):\n  File \"examples/customize-renderer/main.py\", line 9, in main\n    1 / 0\nZeroDivisionError: division by zero"
   }
   
 
