@@ -29,8 +29,8 @@ testing_extras = tests_require + [
 ]
 
 setup(name='monokaki',
-      version='contextual logging library, no patch, no logging module replacement',
-      description='0.1.0',
+      version='0.1.0',
+      description='contextual logging library, no patch, no logging module replacement',
       long_description=README + '\n\n' + CHANGES,
       classifiers=[
           "Programming Language :: Python",
