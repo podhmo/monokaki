@@ -55,15 +55,12 @@ main.py
 output customization
 ----------------------------------------
 
-main.py
+renderer.py
 
 .. code-block:: python
 
   import json
   from collections import OrderedDict
-  from monokaki import get_logger, basic_config
-  
-  logger = get_logger(__name__)
   
   
   def ordered_json_render(data, record, formatter):
@@ -76,6 +73,13 @@ main.py
       if "stack" in data:
           kwargs["stack"] = data["stack"]
       return json.dumps(kwargs, indent=2)
+
+main.py
+
+.. code-block:: python
+
+  from monokaki import get_logger, basic_config
+  logger = get_logger(__name__)
   
   
   def main():
@@ -85,6 +89,7 @@ main.py
   
   if __name__ == "__main__":
       import logging
+      from renderer import ordered_json_render
       basic_config(level=logging.INFO, renderer=ordered_json_render)
       main()
 
@@ -93,17 +98,17 @@ main.py
 
   $ python examples/customize-renderer/main.py
   {
-    "time": "2017-05-21 15:42:17,420",
+    "time": "2017-05-21 15:44:30,840",
     "level": "INFO",
     "meg": "hello",
-    "caller": "examples/customize-renderer/main.py:21",
+    "caller": "examples/customize-renderer/main.py:6",
     "source": "__main__"
   }
   {
-    "time": "2017-05-21 15:42:17,420",
+    "time": "2017-05-21 15:44:30,840",
     "level": "INFO",
     "meg": "bye",
-    "caller": "examples/customize-renderer/main.py:22",
+    "caller": "examples/customize-renderer/main.py:7",
     "source": "__main__"
   }
   
