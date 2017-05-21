@@ -82,13 +82,20 @@ renderer.py
   
   def ordered_json_render(data, record, formatter):
       kwargs = OrderedDict()
+      # see: https://docs.python.org/3/library/logging.html#formatter-objects
       kwargs["time"] = formatter.formatTime(record)
+  
+      # see: https://docs.python.org/3/library/logging.html#logrecord-attributes
       kwargs["level"] = record.levelname
       kwargs["meg"] = record.msg
       kwargs["caller"] = "{}:{}".format(record.pathname, record.lineno)
       kwargs["source"] = record.name
+  
+      # support exc_info or stack_info
       if "stack" in data:
           kwargs["stack"] = data["stack"]
+  
+      # extra data
       kwargs.update(record.kwargs)
       return json.dumps(kwargs, indent=2)
 
@@ -116,7 +123,7 @@ main.py
 
   $ python examples/customize-renderer/main.py
   {
-    "time": "2017-05-21 15:56:23,366",
+    "time": "2017-05-21 15:59:46,126",
     "level": "INFO",
     "meg": "hello",
     "caller": "examples/customize-renderer/main.py:6",
@@ -125,7 +132,7 @@ main.py
     "age": 20
   }
   {
-    "time": "2017-05-21 15:56:23,366",
+    "time": "2017-05-21 15:59:46,127",
     "level": "INFO",
     "meg": "bye",
     "caller": "examples/customize-renderer/main.py:7",
