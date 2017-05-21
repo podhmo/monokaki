@@ -1,6 +1,5 @@
 import sys
 import logging
-import threading
 from collections import ChainMap
 from logging import (  # NOQA
     CRITICAL,
@@ -13,16 +12,6 @@ from logging import (  # NOQA
     NOTSET,
 )
 from monokaki.renderer import DEFAULT_RENDERER
-
-_lock = threading.RLock()
-
-
-def _acquireLock():
-    _lock.acquire()
-
-
-def _releaseLock():
-    _lock.release()
 
 
 class StructLogger(logging.LoggerAdapter):
@@ -70,21 +59,10 @@ def basic_config(
     renderer=DEFAULT_RENDERER,
     handlers=None,
 ):
-    _acquireLock()
-    try:
-        root = logging.getLogger()
-        if len(root.handlers) > 0:
-            return
-        if handlers is not None:
-            for handler in handlers:
-                root.addHandler(handler)
-            return
-
+    if handlers is None:
         stream = stream or sys.stderr
         handler = logging.StreamHandler(stream)
         formatter = formatter or StructuralFormatter(logging.Formatter(format), renderer=renderer)
         handler.setFormatter(formatter)
-        root.addHandler(handler)
-        root.setLevel(level)
-    finally:
-        _releaseLock()
+        handlers = [handler]
+    logging.basicConfig(level=level, handlers=handlers)
