@@ -51,6 +51,9 @@ def get_logger(name):
     return StructLogger(logging.getLogger(name), {})
 
 
+getLogger = get_logger  # backword compatibility of std logging
+
+
 def basic_config(
     level,
     stream=None,
